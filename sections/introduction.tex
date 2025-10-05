@@ -1,16 +1,9 @@
-%!TEX root = ../main.tex
 \section{Introduction}
-\label{sec:intro}
+Recent advances in end-to-end humanoid control have achieved remarkable agility and expressiveness 
+\cite{beyondmimic, exbody2, expressive-humanoid, falcon, amo}.
+However, most existing systems are restricted to single-skill policies and lack the ability to generalize across diverse motions or respond to high-level semantic commands.
 
-Introduce your work. 
-\begin{itemize}
-\item Why is it important? 
-\item What's the motivation?
-\item What's your novelty?
-\end{itemize}
+This project aims to develop a unified, language-conditioned whole-body control policy capable of producing dynamically stable motion trajectories from text prompts. 
+The controller is based on a trajectory diffusion model pre-trained on motion datasets with and without language labels, followed by fine-tuning on high-quality, re-targeted humanoid control data.
 
-Numbered list also helps summarizing the main contributions.
-\begin{enumerate}
-\item First point.
-\item Second point.
-\end{enumerate}
+Our long-term vision is a humanoid platform that can perform a broad range of physically grounded tasks upon natural language instruction, enabling more intuitive human–robot interaction.

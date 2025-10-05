@@ -2,10 +2,51 @@
 \section{Problem Formulation}
 \label{sec:formulation}
 
-Mathematical formulation of your problem. For example
-\bea 
-\min_{u(t)} & \displaystyle \int_{0}^T g(x,u) dt + h(x(T)) \label{eq:1} \\
-\subject & \dot{x} = f(x,u)
-\eea 
+We formulate humanoid control as a partially observable Markov decision process (POMDP):
 
-Equation \eqref{eq:1} can be referred by setting up its label.
+\[
+\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{O}, P, R, \gamma)
+\]
+
+\begin{itemize}
+    \item \textbf{State space} $\mathcal{S}$: joint angles, velocities, base pose, and contact flags.
+    \item \textbf{Observation space} $\mathcal{O}$: proprioceptive sensors.
+    \item \textbf{Action space} $\mathcal{A}$: joint torques or target positions.
+    \item \textbf{Transition} $P$: deterministic simulator dynamics (MuJoCo).
+    \item \textbf{Reward} $R$: combines task completion, stability (ZMP margin), smoothness, and imitation terms.
+    \item \textbf{Language input:} text embedding $z_{\text{text}}$ serves as a context variable conditioning the policy or diffusion process.
+\end{itemize}
+
+\subsection{Assumptions}
+\begin{itemize}
+    \item Dynamics are fully known through simulation.
+    \item No perception or real-world noise is considered.
+    \item Language corresponds to a discrete set of semantic goals (e.g., ``step forward,’’ ``turn left’’).
+\end{itemize}
+
+\subsection{Data Sources}
+\begin{itemize}
+    \item LAFAN1 dataset (retargeted for Unitree G1).
+    \item AMASS dataset with motion and natural language annotations.
+\end{itemize}
+
+\subsection{Infrastructure}
+Training is conducted using MJLab (MuJoCo + RSL) for simulation, PyTorch for model development, and HuggingFace tokenizers for text embeddings.
+
+\subsection{Relevance to the Course}
+
+This project directly aligns with the study of sequential decision making and control in dynamic, high-dimensional systems central to optimal control (OC) and reinforcement learning (RL).
+
+\begin{itemize}
+    \item \textbf{Decision-maker:} learned policy $\pi_\theta(a_t \mid s_t, \text{text})$ representing the humanoid’s language-conditioned controller.
+    \item \textbf{Dynamics:} continuous nonlinear system $s_{t+1} = f(s_t, a_t)$ modeled in MuJoCo.
+    \item \textbf{Sequential aspect:} requires long-horizon trajectory optimization for balance and task completion.
+    \item \textbf{Connection to OC/RL:}
+    \begin{itemize}
+        \item Incorporates imitation and RL rollouts for pretraining.
+        \item Explores diffusion-based trajectory optimization analogous to stochastic optimal control.
+        \item Evaluates policies under cumulative reward including task success, smoothness, and energy efficiency.
+    \end{itemize}
+\end{itemize}
+
+Overall, this work bridges language grounding, imitation learning, and diffusion-based optimal control, aiming for versatile and interpretable humanoid motion generation.
