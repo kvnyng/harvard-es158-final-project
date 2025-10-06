@@ -1,9 +1,0 @@
-%!TEX root = ../main.tex
-\section{Related Work}
-\label{sec:related-work}
-
-Recent humanoid control frameworks \cite{liao2025beyondmimicmotiontrackingversatile} \cite{ji2024exbody2} have demonstrated progress in motion imitation and task-specific control. However, these approaches are limited to single-behavior policies. In addition, language-conditioned control has been explored in manipulation and locomotion tasks \cite{DBLP:journals/corr/abs-2109-01115}, but its application to whole-body humanoid control remains underdeveloped.
-
-Recent work \cite{shao2025langwbclanguagedirectedhumanoidwholebody} have introduced an observation-conditioned, reactive whole-body controller that translates natural language instructions into humanoid motion. Their approach employs a teacher-student RL framework to distill into a compact, language-conditioned policy. While recent works demonstrate impressive real-world performance, policy distillation paradigms inherently restrict behavior to the manifold of trajectories demonstrated by the teacher, limiting the capacity for novel, compositional motion generation.
-
-Our proposed method treats the problem as a language-guided trajectory modeling problem, where the policy corresponds to a particular masking that in-paints the actions. This probabilistic formulation naturally captures the diversity of behaviors corresponding to a single command (e.g., “turn left” → slow turn, fast pivot, or sidestep) and enables zero-shot novelty through the recombination of learned motion primitives. We want to develop a general framework where rich, unlabeled data mixture can be used to produce strong robot priors, where the policy, inverse model, and the forward models are simply variants among the joint and conditional distributions across the language, perception and actions modalities.
