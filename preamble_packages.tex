@@ -24,26 +24,11 @@
 % \usepackage[tracking=false,kerning=true,spacing=true]{microtype}
 % \usepackage[caption=false]{subfig}
 
-% \usepackage[style=numeric-comp,sorting=none,firstinits=true, maxnames=3,bibstyle=numeric,abbreviate=false,defernums=true,eprint=false,backend=bibtex]{biblatex}
-% \renewcommand{\bibfont}{\footnotesize}
 % % \DeclareFieldFormat[article]{pages}{#1}%
 % % \DeclareFieldFormat[inproceedings]{pages}{#1}%
 
-% \AtEveryBibitem{%
-%   \ifentrytype{article}{%
-%     \clearfield{pages}%
-%   }{%
-%   }%
-%   \ifentrytype{inproceedings}{%
-%     \clearfield{pages}%
-%   }{%
-%   }%
-% }
-% \end{comment}
-
-% \bibliography{commons/bib/strings_long}
-% \bibliography{commons/bib/all_only_one_w_pages}
-% \bibliography{../../references/references}
+\usepackage[backend=biber,style=numeric,sorting=none,backref=true]{biblatex}
+\addbibresource{refs.bib}
 
 % \usepackage[noadjust]{cite}
 \usepackage[vlined,ruled,linesnumbered]{algorithm2e}
@@ -67,7 +52,6 @@
 \usepackage{mathtools}
 %\usepackage{amsthm}
 \usepackage{xstring}
-\usepackage[noend]{algorithmic}
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage{prettyref}
@@ -127,7 +111,7 @@
 \let\endstditemize\enditemize
 \let\itemize\undefined
 \makecompactlist{itemize}{stditemize}
-
+\usepackage[breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 %\let\stdenumerate\enumerate
 %\let\endstdenumerate\endenumerate
 %\let\enumerate\undefined

@@ -10,7 +10,7 @@ The pipeline consists of three stages:
 \begin{enumerate}
     \item \textbf{Pretraining:} Train an unconditional diffusion model $p_\theta(\tau)$ over humanoid motion trajectories.
     \item \textbf{Conditioning:} Introduce text conditioning $p_\theta(\tau \mid z_{\text{text}})$ using cross-attention or FiLM layers.
-    \item \textbf{Control Integration:} Deploy generated trajectories into a PD or torque controller for stable execution, optionally refined with reinforcement learning.
+    \item \textbf{Control Integration:} Deploy generated trajectories into a PD controller for stable execution
 \end{enumerate}
 
 This hybrid approach combines imitation learning with policy optimization for robust, semantically aligned control.
@@ -26,7 +26,7 @@ This hybrid approach combines imitation learning with policy optimization for ro
 
 \subsection{Data and Tokenization}
 
-We utilize BeyondMimic and LAFAN1 datasets for pretraining motion representations. 
+We utilize BeyondMimic \cite{liao2025beyondmimicmotiontrackingversatile} and LAFAN1 \cite{harvey2020robust} datasets for pretraining motion representations. 
 A spatiotemporal tokenizer aligns motion frames with textual segments, and time normalization is applied to enhance temporal generalization.
 
 \subsection{Evaluation Plan}
