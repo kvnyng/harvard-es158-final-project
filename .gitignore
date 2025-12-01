@@ -13,3 +13,4 @@
 *.bcf
 main.run.xml
 node_modules/
+*.mov
