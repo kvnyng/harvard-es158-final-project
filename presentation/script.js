@@ -34,3 +34,27 @@ Reveal.addEventListener('ready', numberFigures);
 // Re-number figures when slides change (in case slides are reordered)
 Reveal.addEventListener('slidechanged', numberFigures);
 
+// Set video sources from config (if available)
+function setVideoSources() {
+    if (typeof VIDEO_CONFIG !== 'undefined') {
+        // Find all video elements and update their sources
+        const videos = document.querySelectorAll('video source');
+        videos.forEach(source => {
+            const src = source.getAttribute('src');
+            if (src.includes('no_history.mov')) {
+                source.setAttribute('src', VIDEO_CONFIG.noHistory);
+            } else if (src.includes('history.mov') && !src.includes('history_softmimic')) {
+                source.setAttribute('src', VIDEO_CONFIG.history);
+            } else if (src.includes('history_softmimic.mov')) {
+                source.setAttribute('src', VIDEO_CONFIG.historySoftmimic);
+            }
+            // Reload the video element
+            const video = source.parentElement;
+            video.load();
+        });
+    }
+}
+
+// Set video sources when reveal.js is ready
+Reveal.addEventListener('ready', setVideoSources);
+
