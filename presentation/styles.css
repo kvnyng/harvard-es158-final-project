@@ -1,0 +1,291 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #1a1a1a;
+    --text-primary: #e8e8e8;
+    --text-secondary: #b0b0b0;
+    --accent: #ffffff;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--primary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reveal {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--primary-bg);
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-family: 'Lora', serif;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+.reveal h1 {
+    font-size: 2.625em;
+    /* 3.5em * 0.75 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 0.5em;
+}
+
+.reveal h2 {
+    font-size: 1.875em;
+    /* 2.5em * 0.75 */
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.3em;
+    margin-bottom: 0.5em;
+}
+
+.reveal h3 {
+    font-size: 1.35em;
+    /* 1.8em * 0.75 */
+    margin-bottom: 0.4em;
+}
+
+.reveal p,
+.reveal li {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    font-size: 0.88em;
+    /* 1.1em * 0.80 */
+    line-height: 1.6;
+}
+
+.reveal .slides section {
+    text-align: left;
+    padding: 1.5em 2.5em;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.reveal .title-slide {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+
+/* Title slide specific styles */
+.reveal .title-slide h1 {
+    font-size: 1.96875em;
+    /* 1.3125em * 1.5 (50% increase) */
+    line-height: 1.2;
+}
+
+.reveal .title-slide .subtitle {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-secondary);
+    font-size: 1.6368em;
+    /* 1.32em * 1.24 (24% increase) */
+    font-weight: 300;
+    margin-top: 1em;
+}
+
+.reveal .subtitle {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-secondary);
+    font-size: 0.88em;
+    /* 1.1em * 0.80 */
+    font-weight: 300;
+    margin-top: 1em;
+}
+
+.reveal .title-slide .author {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-secondary);
+    font-size: 0.88em;
+    /* 1.1em * 0.80 */
+    position: absolute;
+    bottom: 2em;
+    left: 2.5em;
+    text-align: left;
+    margin: 0;
+}
+
+.reveal .author {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-secondary);
+    font-size: 0.88em;
+    /* 1.1em * 0.80 */
+    margin-top: 2em;
+}
+
+.reveal .highlight-box {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--secondary-bg);
+    border-left: 4px solid var(--accent);
+    padding: 1em;
+    margin: 1em 0;
+    font-size: 0.8em;
+    /* 1em * 0.80 */
+}
+
+.reveal .two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.reveal .three-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5em;
+}
+
+.reveal .future-directions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.2em;
+}
+
+.reveal .video-comparison {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reveal .video-comparison video {
+    width: 100%;
+    max-width: 100%;
+    border: 2px solid var(--text-secondary);
+    border-radius: 8px;
+    margin-bottom: 0.5em;
+}
+
+.reveal section video {
+    border-radius: 8px;
+}
+
+.reveal .video-caption {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.72em;
+    /* 0.9em * 0.80 */
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+}
+
+.reveal .image-caption {
+    font-family: 'Lora', serif;
+    font-size: 0.7em;
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+    margin-top: 0.5em;
+}
+
+.reveal .video-placeholder {
+    background: var(--secondary-bg);
+    border: 2px dashed var(--text-secondary);
+    padding: 3em;
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.reveal ul {
+    margin-left: 0;
+}
+
+.reveal li {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+}
+
+.reveal ol {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.reveal ol li {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.reveal strong {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.reveal .small-text {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.72em;
+    /* 0.9em * 0.80 */
+    color: var(--text-secondary);
+}
+
+.reveal .formula {
+    background: var(--secondary-bg);
+    padding: 0.5em;
+    border-radius: 4px;
+    font-family: 'Source Sans Pro', 'Courier New', monospace;
+    text-align: center;
+    margin: 1em 0;
+}
+
+.reveal section img {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+/* Canvas bounded by viewport height - centered */
+.reveal .reveal-viewport {
+    width: 100%;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Ensure slides scale properly within the height-bounded canvas */
+.reveal .slides {
+    width: 1920px;
+    height: 1080px;
+}
+
+.reveal .slides section {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+/* Prevent content overflow */
+.reveal .slides section>* {
+    max-width: 100%;
+}
+
+/* Adjust spacing for better fit */
+.reveal .two-column,
+.reveal .three-column {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}

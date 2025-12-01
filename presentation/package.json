@@ -1,0 +1,12 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "Presentation with auto-reload",
+  "scripts": {
+    "dev": "live-server --port=8080 --open=presentation.html --watch=presentation.html,styles.css,script.js,assets"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
+

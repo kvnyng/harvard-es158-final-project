@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language-Guided Humanoid Control</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Title -->
+            <section class="title-slide">
+                <h1>LANGUAGE-GUIDED<br>WHOLE-BODY<br>HUMANOID CONTROL</h1>
+                <p class="subtitle">via Conditional Trajectory Diffusion</p>
+                <p class="author">Kevin H. Yang<br>Harvard ES158 Final Project<br>December 2025</p>
+            </section>
+
+            <!-- Slide 2: Motivation and Research Landscape -->
+            <section>
+                <h2>Motivation & Research Landscape</h2>
+                <div class="highlight-box">
+                    <strong>The Challenge:</strong> State-of-the-art humanoid control systems achieve impressive agility
+                    but remain limited to single-skill policies with no high-level semantic understanding.
+                </div>
+
+                <h3 style="font-size: 1.05em; margin-top: 1.5em;">Existing Approaches</h3>
+                <ul>
+                    <li><strong>BeyondMimic, ExBody2, FALCON:</strong> Excellent motion tracking and task-specific
+                        control, but restricted to predefined behaviors</li>
+                    <li><strong>LangWBC:</strong> Teacher-student RL for language-conditioned control, but limited to
+                        teacher's demonstrated trajectories</li>
+                    <li><strong>Gap:</strong> No framework for zero-shot, compositional motion generation from natural
+                        language</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Project Description -->
+            <section>
+                <h2>Project Overview</h2>
+
+                <div class="highlight-box" style="margin-top: 1em; margin-bottom: 1em;">
+                    <strong>Our Vision:</strong> A unified humanoid platform that performs diverse physically grounded
+                    tasks from natural language instructions—enabling intuitive human-robot interaction.
+                </div>
+
+                <h3 style="font-size: 1.05em;">Core Innovation</h3>
+                <p>We treat humanoid control as a <strong>language-guided trajectory modeling problem</strong> rather
+                    than pure imitation learning.</p>
+
+                <div class="two-column">
+                    <div>
+                        <h3 style="font-size: 0.9em;">Three-Stage Pipeline</h3>
+                        <ol>
+                            <li><strong>Pretraining:</strong> Unconditional diffusion model on motion trajectories</li>
+                            <li><strong>Conditioning:</strong> Text conditioning via cross-attention/FiLM layers</li>
+                            <li><strong>Control Integration:</strong> Deploy via PD controller</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.9em;">Key Advantages</h3>
+                        <ul>
+                            <li>Captures diversity of behaviors per command</li>
+                            <li>Zero-shot novelty through primitive recombination</li>
+                            <li>Unified framework for labeled/unlabeled data</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Proposed Method - Three-Stage Pipeline -->
+            <section>
+                <h2>Proposed Method</h2>
+
+                <div class="two-column">
+                    <div style="display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.05em;">Three-Stage Pipeline</h3>
+                        <ol>
+                            <li><strong>Pretraining:</strong> Train an unconditional diffusion model p<sub>θ</sub>(τ)
+                                over humanoid motion trajectories</li>
+                            <li><strong>Conditioning:</strong> Introduce text conditioning p<sub>θ</sub>(τ |
+                                z<sub>text</sub>) using cross-attention or FiLM layers</li>
+                            <li><strong>Control Integration:</strong> Deploy generated trajectories into a PD controller
+                                for stable execution</li>
+                        </ol>
+                        <p class="image-caption" style="text-align: right; margin-top: auto;">BeyondMimic framework
+                            architecture showing the motion tracking
+                            and
+                            control pipeline.</p>
+                    </div>
+                    <div>
+                        <img src="assets/beyondmimic_framework.png" alt="BeyondMimic Framework"
+                            style="width: 100%; max-width: 100%;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Proposed Method - System Architecture -->
+            <section>
+                <h2>Proposed Method</h2>
+
+                <div class="two-column">
+                    <div style="display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.05em;">System Architecture</h3>
+                        <ul>
+                            <li><strong>Inputs:</strong> Text prompt and proprioceptive history</li>
+                            <li><strong>Outputs:</strong> Time-parameterized per-joint control trajectories</li>
+                            <li><strong>Backbone:</strong> Shared temporal encoder with decoders for motion and language
+                            </li>
+                            <li><strong>Losses:</strong> Diffusion loss, imitation loss, and alignment loss between text
+                                and motion</li>
+                        </ul>
+                        <p class="image-caption" style="text-align: right; margin-top: auto;">Motion-X++ dataset
+                            visualization showing an example humanoid
+                            pose
+                            configuration.</p>
+                    </div>
+                    <div>
+                        <img src="assets/motion-x++.png" alt="Motion-X++ Dataset" style="width: 70%; max-width: 70%;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: MDP and RL Connection -->
+            <section>
+                <h2>Connection to MDP & Reinforcement Learning</h2>
+
+                <div class="highlight-box">
+                    <strong>POMDP Formulation:</strong> M = (S, A, O, P, R, γ)
+                </div>
+
+                <div class="two-column">
+                    <div>
+                        <h3 style="font-size: 0.9em;">Components</h3>
+                        <ul>
+                            <li><strong>State S:</strong> Joint angles, velocities, base pose, contact flags</li>
+                            <li><strong>Observation O:</strong> Proprioceptive sensors</li>
+                            <li><strong>Action A:</strong> Joint torques/target positions</li>
+                            <li><strong>Transition P:</strong> MuJoCo simulator (deterministic)</li>
+                            <li><strong>Reward R:</strong> Task completion + stability (ZMP) + smoothness + imitation
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.9em;">Sequential Decision Making</h3>
+                        <ul>
+                            <li><strong>Decision-maker:</strong> Policy π<sub>θ</sub>(a<sub>t</sub> | s<sub>t</sub>,
+                                text)</li>
+                            <li><strong>Dynamics:</strong> Continuous nonlinear s<sub>t+1</sub> = f(s<sub>t</sub>,
+                                a<sub>t</sub>)</li>
+                            <li><strong>Horizon:</strong> Long-horizon trajectory optimization for balance</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Data, Tokenization & Evaluation -->
+            <section style="font-size: 0.95em;">
+                <h2>Data, Tokenization & Evaluation</h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3 style="font-size: 1.05em;">Data and Tokenization</h3>
+                        <ul>
+                            <li>Utilize <strong>BeyondMimic</strong> and <strong>LAFAN1</strong> datasets for
+                                pretraining motion representations</li>
+                            <li>Spatiotemporal tokenizer aligns motion frames with textual segments</li>
+                            <li>Time normalization applied to enhance temporal generalization</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.05em; margin-top: 1em;">Evaluation Plan</h3>
+                        <p><strong>Baselines:</strong></p>
+                        <ul>
+                            <li>BeyondMimic RL (task-specific policy)</li>
+                            <li>ExBody2 imitation controller</li>
+                            <li>Diffusion model without language conditioning</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Metrics:</strong></p>
+                        <ul>
+                            <li>Task success rate (prompt compliance)</li>
+                            <li>Motion realism (FID in latent space)</li>
+                            <li>Trajectory smoothness and stability</li>
+                            <li>Language–motion alignment (CLIP similarity or human evaluation)</li>
+                        </ul>
+
+                        <div class="highlight-box" style="margin-top: 1.5em;">
+                            <strong>Expected Outcomes:</strong>
+                            <ul style="margin-top: 0.5em;">
+                                <li>Demonstrate feasibility of language-conditioned humanoid control</li>
+                                <li>Release a dataset of captioned humanoid trajectories</li>
+                                <li>Provide an open-source simulation and training pipeline</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Development & Progress - Infrastructure Established -->
+            <section>
+                <h2>Development & Progress</h2>
+
+                <div class="two-column">
+                    <div style="display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.05em;">Infrastructure Established</h3>
+                        <ul>
+                            <li>Successfully deployed <strong>BeyondMimic framework</strong> for scalable motion
+                                tracking and
+                                policy learning</li>
+                            <li>Validated environment setup with official tutorials</li>
+                            <li>Training pipeline: MJLab (MuJoCo + RSL), PyTorch, HuggingFace tokenizers</li>
+                        </ul>
+                        <p class="image-caption" style="text-align: right; margin-top: auto;">G1 humanoid robot
+                            deployment demonstrating motion tracking with
+                            Motion-X++ trajectories.</p>
+                    </div>
+                    <div>
+                        <img src="assets/g1_deploy_1.png" alt="G1 Humanoid Deployment"
+                            style="width: 100%; max-width: 100%; border: 2px solid var(--text-secondary); border-radius: 4px;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Development & Progress - Preliminary Results -->
+            <section>
+                <h2>Development & Progress</h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3 style="font-size: 1.05em;">Preliminary Results</h3>
+                        <p><strong>Successes:</strong></p>
+                        <ul>
+                            <li>Successful short-horizon motion tracking (stepping, reaching)</li>
+                            <li>~70% prompt compliance on 50 sampled trajectories</li>
+                            <li>Physically valid trajectories with minor oscillations</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Challenges:</strong></p>
+                        <ul>
+                            <li>Unstable balance during continuous locomotion</li>
+                            <li>Inconsistent text-conditioned generation</li>
+                            <li>Sparse/inconsistent Motion-X++ annotations</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: In-progress Results - Video Comparison -->
+            <section>
+                <h2>In-progress Results</h2>
+
+                <div class="three-column">
+                    <div class="video-comparison">
+                        <video controls>
+                            <source src="assets/no_history.mov" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="video-caption" style="font-size: 0.792em;"><strong>Baseline:</strong> No
+                            proprioceptive history</p>
+                    </div>
+                    <div class="video-comparison">
+                        <video controls>
+                            <source src="assets/history.mov" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="video-caption" style="font-size: 0.792em;"><strong>With History:</strong>
+                            Proprioceptive history included in body
+                            tracking</p>
+                    </div>
+                    <div class="video-comparison">
+                        <video controls>
+                            <source src="assets/history_softmimic.mov" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="video-caption" style="font-size: 0.792em;"><strong>History + SoftMimic:</strong>
+                            Proprioceptive history with
+                            SoftMimic paper integration</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: In-progress Results - Key Improvements -->
+            <section>
+                <h2>In-progress Results</h2>
+
+                <div class="two-column">
+                    <div>
+                        <video controls style="width: 100%; max-width: 100%;">
+                            <source src="assets/history_softmimic.mov" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.05em;">Key Improvements</h3>
+                        <ul>
+                            <li><strong>Proprioceptive History:</strong> Incorporating temporal context from previous
+                                observations improves motion tracking stability and reduces oscillations</li>
+                            <li><strong>SoftMimic Integration:</strong> Application of SoftMimic techniques enhances
+                                imitation learning performance and motion quality</li>
+                        </ul>
+                        <p class="image-caption" style="text-align: left; margin-top: auto;">History + SoftMimic video
+                            demonstrating improved motion tracking with temporal context and SoftMimic integration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 11: Next Steps and Future Directions -->
+            <section>
+                <h2>Next Steps and Future Directions</h2>
+
+                <div class="future-directions-grid" style="margin-top: 1em;">
+                    <div>
+                        <h3 style="font-size: 0.9em; margin-bottom: 0.3em;">Theoretical Foundations</h3>
+                        <p style="font-size: 0.75em; margin-bottom: 0.5em;">Formal guarantees on stability and safety
+                        </p>
+                        <ul style="font-size: 0.7em; margin-top: 0.3em; list-style: none; padding-left: 0;">
+                            <li>&#9;☐&nbsp;&nbsp;Integrate text-conditioned diffusion into BeyondMimic framework</li>
+                            <li>&#9;☐&nbsp;&nbsp;Conduct ablation studies (diffusion steps, conditioning strength,
+                                dataset subsets)
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.9em; margin-bottom: 0.3em;">Compositional Generation</h3>
+                        <p style="font-size: 0.75em; margin-bottom: 0.5em;">Complex multi-skill sequences from compound
+                            instructions</p>
+                        <ul style="font-size: 0.7em; margin-top: 0.3em; list-style: none; padding-left: 0;">
+                            <li>&#9;☐&nbsp;&nbsp;Implement multi-skill sequences and evaluate trajectory smoothness</li>
+                            <li>&#9;☐&nbsp;&nbsp;Evaluate on reaching, turning, and stepping tasks</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.9em; margin-bottom: 0.3em;">Real-World Deployment</h3>
+                        <p style="font-size: 0.75em; margin-bottom: 0.5em;">Sim-to-real transfer, vision integration,
+                            safety constraints</p>
+                        <ul style="font-size: 0.7em; margin-top: 0.3em; list-style: none; padding-left: 0;">
+                            <li>&#9;☐&nbsp;&nbsp;Finalize analysis and prepare open-source release</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.9em; margin-bottom: 0.3em;">Interactive Refinement</h3>
+                        <p style="font-size: 0.75em; margin-bottom: 0.5em;">Online learning from human feedback</p>
+                        <ul style="font-size: 0.7em; margin-top: 0.3em; list-style: none; padding-left: 0;">
+                            <li>&#9;☐&nbsp;&nbsp;Assess semantic consistency of generated motions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 12: References -->
+            <section>
+                <h2>References</h2>
+                <div class="two-column" style="font-size: 0.6375em; line-height: 1.4;">
+                    <div>
+                        <p style="margin-bottom: 0.5em;"><strong>Bertsekas, D.</strong> (2012). <em>Dynamic programming
+                                and
+                                optimal control: Volume I</em> (Vol. 4). Athena Scientific.</p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Li, J., Cheng, X., Huang, T., Yang, S., Qiu, R., &
+                                Wang,
+                                X.</strong> (2025). AMO: Adaptive Motion Optimization for Hyper-Dexterous Humanoid
+                            Whole-Body Control. <em>Robotics: Science and Systems 2025</em>.</p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Zhang, Y., Yuan, Y., Gurunath, P., He, T., Omidshafiei,
+                                S.,
+                                Agha-mohammadi, A., Vazquez-Chanlatte, M., Pedersen, L., & Shi, G.</strong> (2025).
+                            FALCON:
+                            Learning Force-Adaptive Humanoid Loco-Manipulation. <em>arXiv preprint
+                                arXiv:2505.06776</em>.
+                        </p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Ji, M., Peng, X., Liu, F., Li, J., Yang, G., Cheng, X.,
+                                &
+                                Wang, X.</strong> (2024). ExBody2: Advanced Expressive Humanoid Whole-Body Control.
+                            <em>arXiv preprint arXiv:2412.13196</em>.
+                        </p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Liao, Q., Truong, T. E., Huang, X., Tevet, G.,
+                                Sreenath,
+                                K., & Liu, C. K.</strong> (2025). BeyondMimic: From Motion Tracking to Versatile
+                            Humanoid
+                            Control via Guided Diffusion. <em>arXiv preprint arXiv:2508.08241</em>.</p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Cheng, X., Ji, Y., Chen, J., Yang, R., Yang, G., &
+                                Wang,
+                                X.</strong> (2024). Expressive Whole-Body Control for Humanoid Robots. <em>arXiv
+                                preprint
+                                arXiv:2402.16796</em>.</p>
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 0.5em;"><strong>Mahmood, N., Ghorbani, N., Troje, N. F., Pons-Moll, G.,
+                                &
+                                Black, M. J.</strong> (2019). AMASS: Archive of Motion Capture as Surface Shapes.
+                            <em>International Conference on Computer Vision</em>, 5442-5451.
+                        </p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Harvey, F. G., Yurick, M., Nowrouzezahrai, D., & Pal,
+                                C.</strong> (2020). Robust Motion In-Betweening. <em>ACM Transactions on Graphics
+                                (Proceedings of ACM SIGGRAPH)</em>, 39(4).</p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Nair, S., Mitchell, E., Chen, K., Ichter, B., Savarese,
+                                S.,
+                                & Finn, C.</strong> (2021). Learning Language-Conditioned Robot Behavior from Offline
+                            Data
+                            and Crowd-Sourced Annotation. <em>arXiv preprint arXiv:2109.01115</em>.</p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Shao, Y., Huang, X., Zhang, B., Liao, Q., Gao, Y., Chi,
+                                Y.,
+                                Li, Z., Shao, S., & Sreenath, K.</strong> (2025). LangWBC: Language-directed Humanoid
+                            Whole-Body Control via End-to-end Learning. <em>arXiv preprint arXiv:2504.21738</em>.</p>
+
+                        <p style="margin-bottom: 0.5em;"><strong>Zhang, Y., Lin, J., Zeng, A., Wu, G., Lu, S., Fu, Y.,
+                                Cai,
+                                Y., Zhang, R., Wang, H., & Zhang, L.</strong> (2025). Motion-X++: A Large-Scale
+                            Multimodal
+                            3D Whole-body Human Motion Dataset. <em>arXiv preprint arXiv:2501.05098</em>.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

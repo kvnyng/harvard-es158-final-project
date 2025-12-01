@@ -10,3 +10,6 @@
 *.tar.gz
 *main.brf
 *.DS_Store
+*.bcf
+main.run.xml
+node_modules/
