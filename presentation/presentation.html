@@ -57,24 +57,12 @@
                 <p>We treat humanoid control as a <strong>language-guided trajectory modeling problem</strong> rather
                     than pure imitation learning.</p>
 
-                <div class="two-column">
-                    <div>
-                        <h3 style="font-size: 0.9em;">Three-Stage Pipeline</h3>
-                        <ol>
-                            <li><strong>Pretraining:</strong> Unconditional diffusion model on motion trajectories</li>
-                            <li><strong>Conditioning:</strong> Text conditioning via cross-attention/FiLM layers</li>
-                            <li><strong>Control Integration:</strong> Deploy via PD controller</li>
-                        </ol>
-                    </div>
-                    <div>
-                        <h3 style="font-size: 0.9em;">Key Advantages</h3>
-                        <ul>
-                            <li>Captures diversity of behaviors per command</li>
-                            <li>Zero-shot novelty through primitive recombination</li>
-                            <li>Unified framework for labeled/unlabeled data</li>
-                        </ul>
-                    </div>
-                </div>
+                <h3 style="font-size: 1.05em; margin-top: 1em;">Key Advantages</h3>
+                <ul>
+                    <li>Captures diversity of behaviors per command</li>
+                    <li>Zero-shot novelty through primitive recombination</li>
+                    <li>Unified framework for labeled/unlabeled data</li>
+                </ul>
             </section>
 
             <!-- Slide 4: Proposed Method - Three-Stage Pipeline -->
@@ -171,7 +159,7 @@
                     <div>
                         <h3 style="font-size: 1.05em;">Data and Tokenization</h3>
                         <ul>
-                            <li>Utilize <strong>BeyondMimic</strong> and <strong>LAFAN1</strong> datasets for
+                            <li>Utilize <strong>BeyondMimic</strong> and <strong>Motion-X++</strong> datasets for
                                 pretraining motion representations</li>
                             <li>Spatiotemporal tokenizer aligns motion frames with textual segments</li>
                             <li>Time normalization applied to enhance temporal generalization</li>
