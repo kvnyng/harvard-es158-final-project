@@ -189,6 +189,81 @@ Model training leverages diffusion-based motion generation conditioned on text e
 % \appendix
 % \input{sections/app-proof-convergence.tex}
 
+\section{Mid-Term Report}
+
+\subsection{Implementation Progress}
+\label{sec:implementation-progress}
+
+We have established a working humanoid control and training pipeline based on the BeyondMimic framework \cite{liao2025beyondmimicmotiontrackingversatile}. 
+The BeyondMimic system provides a scalable motion tracking and policy learning pipeline that faithfully transforms kinematic human reference motions into dynamically stable control policies for humanoid robots. 
+To validate and understand its structure, we successfully set up the BeyondMimic environment and reproduced the official tutorial for policy training and motion tracking. 
+This involved running the example training scripts, reproducing the reference-tracking controllers, and visualizing learned policies in simulation.
+
+In parallel, we have begun curating motion data from the Motion-X++ dataset \cite{zhang2025motionxlargescalemultimodal3d}, a large-scale multimodal 3D human motion dataset that includes semantic text annotations. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=2.5in]{figure/motion-x++.png}
+    \caption{Example motion samples and semantic annotations from the Motion-X++ dataset.}
+    \label{fig:motionx}
+\end{figure}
+
+From this dataset, we selected a subset of motion clips and associated textual labels to serve as paired data for pretraining and language conditioning experiments. 
+These samples cover common humanoid actions such as walking, turning, crouching, and reaching, providing a basis for early-stage language–motion alignment.
+
+The next major step is to leverage the BeyondMimic training pipeline for fine-tuning with language-conditioned diffusion models. 
+This involves modifying the diffusion policy to accept text embeddings as conditioning variables and integrating semantic labels from Motion-X++ into the motion tracking process.
+
+Two main issues have emerged. 
+First, the semantic annotations in Motion-X++ are relatively sparse and inconsistent, which limits the quality of language–motion alignment during supervised pretraining. 
+Second, determining a suitable architecture for the joint training of unlabeled and semantically labeled data remains an open design question. 
+We are currently exploring multi-branch diffusion backbones that can handle both labeled and unlabeled trajectories to support scalable pretraining.
+
+Overall, these efforts establish a solid foundation for end-to-end language-guided humanoid control. 
+With the BeyondMimic infrastructure functioning and dataset preprocessing underway, the project is on track to demonstrate feasibility and progress toward a conditional trajectory diffusion controller in the final report.
+
+\subsection{Scope Update and Justification}
+Compared to the initial proposal, we refined the project scope to focus on simulated humanoid control and language-conditioned trajectory generation, excluding real-world deployment and visual grounding at this stage. 
+Preliminary trials with BeyondMimic indicated that reliable training and evaluation can already be achieved entirely in simulation, enabling faster iteration and controlled ablations. 
+We also deferred multi-skill fusion to later stages after observing instability in long-horizon imitation rollouts. 
+This pivot ensures technical feasibility while still aligning with the overarching goal of scalable language-conditioned humanoid control.
+
+\subsection{Preliminary Results and Analysis}
+
+\begin{figure}[h]
+    \centering
+    \begin{tabular}{cccc}
+        \includegraphics[height=2.2in]{figure/g1_deploy_1.png} &
+        \includegraphics[height=2.2in]{figure/g1_deploy_2.png} &
+        \includegraphics[height=2.2in]{figure/g1_deploy_4.png} \\
+    \end{tabular}
+    \caption{Sequential frames from a G1 humanoid deployment trained on motion trajectories from Motion-X++. These motions were not originally included in BeyondMimic}
+    \label{fig:g1_deploy_sequence}
+\end{figure}
+
+Initial experiments using BeyondMimic-trained controllers demonstrate successful motion tracking for short-horizon actions such as stepping and reaching. 
+The pretrained diffusion model generates physically valid trajectories with minor oscillations at transition frames. 
+We evaluated preliminary language–motion alignment using simple text prompts and manually labeled action types from Motion-X++, achieving roughly 70\% prompt compliance across 50 sampled trajectories.
+
+Notable failure cases include unstable balance during continuous locomotion and inconsistent text-conditioned generation when semantic labels are ambiguous. 
+These insights suggest that data quality and consistent label semantics are critical bottlenecks, motivating upcoming work on improved data curation and cross-modal regularization.
+
+\subsection{Roadmap to Final Report}
+\textbf{Planned Milestones:}
+\begin{itemize}
+    \item \textbf{Week 10–11:} Integrate text-conditioned diffusion into the BeyondMimic pipeline; evaluate on motion categories (reaching, turning, stepping).
+    \item \textbf{Week 12:} Implement ablation studies on diffusion steps, conditioning strength, and motion/text dataset subsets.
+    \item \textbf{Week 13:} Extend to multi-skill sequences and evaluate trajectory smoothness and semantic consistency.
+    \item \textbf{Week 14:} Conduct final analysis and prepare report, open-source code, and dataset.
+\end{itemize}
+
+\textbf{Risks and Mitigations:}
+\begin{itemize}
+    \item \textit{Dataset label noise:} mitigate via prompt normalization and clustering-based relabeling.
+    \item \textit{Training instability:} use smaller batch diffusion steps and checkpoint averaging.
+    \item \textit{Compute cost:} run shorter diffusion rollouts for ablations, scaling up later.
+\end{itemize}
+
 %% References
 \printbibliography
 % \bibliographystyle{plain}
