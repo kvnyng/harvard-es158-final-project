@@ -42,7 +42,8 @@ function setVideoSources() {
         videos.forEach(source => {
             const src = source.getAttribute('src');
             // Only replace if it's a local assets path, not already a GitHub URL
-            if (src.startsWith('assets/') || src.startsWith('./assets/')) {
+            // Skip if it's already a GitHub releases URL (contains 'releases/download')
+            if ((src.startsWith('assets/') || src.startsWith('./assets/')) && !src.includes('releases/download')) {
                 if (src.includes('no_history.mov')) {
                     source.setAttribute('src', VIDEO_CONFIG.noHistory);
                 } else if (src.includes('history.mov') && !src.includes('history_softmimic')) {
