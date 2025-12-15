@@ -1,0 +1,272 @@
+\documentclass{article}
+
+\usepackage{amsfonts, amsmath, amsthm}
+\usepackage[letterpaper, total={6in, 9in}]{geometry}
+% \usepackage[noend]{algorithmic}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+
+%% preamble packages and symbols
+\input{preamble_packages}
+\input{preamble_symbols}
+
+% \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+%% it is often convenient to define shortcuts for some important notations
+\input{shortcuts.tex}
+
+\title{Language-Guided Whole-Body Humanoid Control via Conditional Trajectory Diffusion}
+
+\author{Kevin H. Yang}
+
+\begin{document}
+\maketitle
+
+%% Abstract
+\begin{abstract}
+We propose a language-conditioned whole-body control framework for humanoid robots.
+Our approach aims to map natural language commands to dynamically stable, full-body control trajectories.
+By pretraining a trajectory diffusion model on large-scale motion datasets and fine-tuning on high-quality humanoid data, the system learns versatile, text-controllable motion generation.
+The resulting controller enables general-purpose, physically grounded humanoid behaviors from textual prompts such as “turn left” or “reach forward.”
+This project explores the integration of natural language understanding with optimal control and reinforcement learning for expressive humanoid motion generation.
+\end{abstract}
+
+%% Main sections
+\section{Introduction}
+State of the art humanoid whole-body control trained end-to-end in simulations have achieved remarkable agility and expressiveness 
+\cite{liao2025beyondmimicmotiontrackingversatile, ji2024exbody2, cheng2024express, zhang2025falcon, li2025amo}.
+However, most existing systems are restricted to single-skill policies and lack the ability to generalize across diverse motions or respond to high-level semantic commands.
+
+This project aims to develop a unified, language-conditioned whole-body control policy capable of producing dynamically stable motion trajectories from text prompts. 
+The controller is based on a trajectory diffusion model pre-trained on motion datasets with and without language labels, followed by fine-tuning on high-quality, re-targeted humanoid control data.
+
+Our long-term vision is a humanoid platform that can perform a broad range of physically grounded tasks upon natural language instruction, enabling more intuitive human–robot interaction.
+
+%!TEX root = ../main.tex
+\section{Related Work}
+\label{sec:related-work}
+
+Recent humanoid control frameworks \cite{liao2025beyondmimicmotiontrackingversatile} \cite{ji2024exbody2} have demonstrated progress in motion imitation and task-specific control. However, these approaches are limited to single-behavior policies. In addition, language-conditioned control has been explored in manipulation and locomotion tasks \cite{DBLP:journals/corr/abs-2109-01115}, but its application to whole-body humanoid control remains underdeveloped.
+
+Recent work \cite{shao2025langwbclanguagedirectedhumanoidwholebody} have introduced an observation-conditioned, reactive whole-body controller that translates natural language instructions into humanoid motion. Their approach employs a teacher-student RL framework to distill into a compact, language-conditioned policy. While recent works demonstrate impressive real-world performance, policy distillation paradigms inherently restrict behavior to the manifold of trajectories demonstrated by the teacher, limiting the capacity for novel, compositional motion generation.
+
+Our proposed method treats the problem as a language-guided trajectory modeling problem, where the policy corresponds to a particular masking that in-paints the actions. This probabilistic formulation naturally captures the diversity of behaviors corresponding to a single command (e.g., “turn left” → slow turn, fast pivot, or sidestep) and enables zero-shot novelty through the recombination of learned motion primitives. We want to develop a general framework where rich, unlabeled data mixture can be used to produce strong robot priors, where the policy, inverse model, and the forward models are simply variants among the joint and conditional distributions across the language, perception and actions modalities.
+
+%!TEX root = ../main.tex
+\section{Problem Formulation}
+\label{sec:formulation}
+
+We formulate humanoid control as a partially observable Markov decision process (POMDP):
+
+\[
+\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{O}, P, R, \gamma)
+\]
+
+\begin{itemize}
+    \item \textbf{State space} $\mathcal{S}$: joint angles, velocities, base pose, and contact flags.
+    \item \textbf{Observation space} $\mathcal{O}$: proprioceptive sensors.
+    \item \textbf{Action space} $\mathcal{A}$: joint torques or target positions.
+    \item \textbf{Transition} $P$: deterministic simulator dynamics (MuJoCo).
+    \item \textbf{Reward} $R$: combines task completion, stability (ZMP margin), smoothness, and imitation terms.
+    \item \textbf{Language input:} text embedding $z_{\text{text}}$ serves as a context variable conditioning the policy or diffusion process.
+\end{itemize}
+
+\subsection{Assumptions}
+\begin{itemize}
+    \item Dynamics are fully known through simulation.
+    \item No perception or real-world noise is considered.
+    \item Language corresponds to a discrete set of semantic goals (e.g., ``step forward,’’ ``turn left’’).
+\end{itemize}
+
+\subsection{Data Sources}
+\begin{itemize}
+    \item AMASS \cite{AMASS:ICCV:2019} dataset with motion and natural language annotations.
+    \item LAFAN1 \cite{harvey2020robust} (retargeted for Unitree G1).
+\end{itemize}
+
+\subsection{Infrastructure}
+Training is conducted using MJLab (MuJoCo + RSL) for simulation, PyTorch for model development, and HuggingFace tokenizers for text embeddings.
+
+\subsection{Relevance to the Course}
+
+This project directly aligns with the study of sequential decision making and control in dynamic, high-dimensional systems central to optimal control (OC) and reinforcement learning (RL).
+
+\begin{itemize}
+    \item \textbf{Decision-maker:} learned policy $\pi_\theta(a_t \mid s_t, \text{text})$ representing the humanoid’s language-conditioned controller.
+    \item \textbf{Dynamics:} continuous nonlinear system $s_{t+1} = f(s_t, a_t)$ modeled in MuJoCo.
+    \item \textbf{Sequential aspect:} requires long-horizon trajectory optimization for balance and task completion.
+    \item \textbf{Connection to OC/RL:}
+    \begin{itemize}
+        \item Incorporates imitation and RL rollouts for pretraining.
+        \item Explores diffusion-based trajectory optimization analogous to stochastic optimal control.
+        \item Evaluates policies under cumulative reward including task success, smoothness, and energy efficiency.
+    \end{itemize}
+\end{itemize}
+
+This work bridges language grounding, imitation learning, and diffusion-based optimal control, aiming for versatile and interpretable humanoid motion generation.
+
+%!TEX root = ../main.tex
+\section{Proposed Method}
+\label{sec:method}
+
+\subsection{Overview}
+
+We propose a language-conditioned trajectory diffusion model for whole-body humanoid control. 
+The pipeline consists of three stages:
+
+\begin{enumerate}
+    \item \textbf{Pretraining:} Train an unconditional diffusion model $p_\theta(\tau)$ over humanoid motion trajectories.
+    \item \textbf{Conditioning:} Introduce text conditioning $p_\theta(\tau \mid z_{\text{text}})$ using cross-attention or FiLM layers.
+    \item \textbf{Control Integration:} Deploy generated trajectories into a PD controller for stable execution
+\end{enumerate}
+
+This hybrid approach combines imitation learning with policy optimization for robust, semantically aligned control.
+
+\subsection{System Architecture}
+
+\begin{itemize}
+    \item \textbf{Inputs:} text prompt and proprioceptive history.
+    \item \textbf{Outputs:} time-parameterized per-joint control trajectories.
+    \item \textbf{Backbone:} shared temporal encoder with decoders for motion and language.
+    \item \textbf{Losses:} diffusion loss, imitation loss, and alignment loss between text and motion.
+\end{itemize}
+
+\subsection{Data and Tokenization}
+
+We utilize BeyondMimic \cite{liao2025beyondmimicmotiontrackingversatile} and LAFAN1 \cite{harvey2020robust} datasets for pretraining motion representations. 
+A spatiotemporal tokenizer aligns motion frames with textual segments, and time normalization is applied to enhance temporal generalization.
+
+\subsection{Evaluation Plan}
+
+\textbf{Baselines:}
+\begin{itemize}
+    \item BeyondMimic RL (task-specific policy)
+    \item ExBody2 imitation controller
+    \item Diffusion model without language conditioning
+\end{itemize}
+
+\textbf{Metrics:}
+\begin{itemize}
+    \item Task success rate (prompt compliance)
+    \item Motion realism (FID in latent space)
+    \item Trajectory smoothness and stability
+    \item Language–motion alignment (CLIP similarity or human evaluation)
+\end{itemize}
+
+\textbf{Expected Outcomes:}
+\begin{itemize}
+    \item Demonstrate feasibility of language-conditioned humanoid control.
+    \item Release a dataset of captioned humanoid trajectories.
+    \item Provide an open-source simulation and training pipeline.
+\end{itemize}
+
+%!TEX root = ../main.tex
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Scope and Evaluation}
+
+The project’s scope is limited to simulated humanoid control without perception.
+Experiments evaluate how well language-conditioned policies generalize to unseen text prompts within predefined skill categories such as reaching, stepping, turning, grasping, pushing, and balancing.
+
+We evaluate on the following axes:
+\begin{itemize}
+    \item \textbf{Physical validity:} trajectory stability and balance.
+    \item \textbf{Task execution:} correct motion given text input.
+    \item \textbf{Smoothness:} motion continuity and energy efficiency.
+\end{itemize}
+
+\subsection{Infrastructure}
+
+Experiments are run using the MJLab environment, RSLgym, and PyTorch.
+Model training leverages diffusion-based motion generation conditioned on text embeddings from pretrained language models.
+% \input{sections/conclusion.tex}
+
+\clearpage
+%% Appendix
+% \begin{center}
+%     {\Large\bf Appendix}
+% \end{center}
+% \appendix
+% \input{sections/app-proof-convergence.tex}
+
+\section{Mid-Term Report}
+
+\subsection{Implementation Progress}
+\label{sec:implementation-progress}
+
+We have established a working humanoid control and training pipeline based on the BeyondMimic framework \cite{liao2025beyondmimicmotiontrackingversatile}. 
+The BeyondMimic system provides a scalable motion tracking and policy learning pipeline that faithfully transforms kinematic human reference motions into dynamically stable control policies for humanoid robots. 
+To validate and understand its structure, we successfully set up the BeyondMimic environment and reproduced the official tutorial for policy training and motion tracking. 
+This involved running the example training scripts, reproducing the reference-tracking controllers, and visualizing learned policies in simulation.
+
+In parallel, we have begun curating motion data from the Motion-X++ dataset \cite{zhang2025motionxlargescalemultimodal3d}, a large-scale multimodal 3D human motion dataset that includes semantic text annotations. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=2.5in]{figure/motion-x++.png}
+    \caption{Example motion samples and semantic annotations from the Motion-X++ dataset.}
+    \label{fig:motionx}
+\end{figure}
+
+From this dataset, we selected a subset of motion clips and associated textual labels to serve as paired data for pretraining and language conditioning experiments. 
+These samples cover common humanoid actions such as walking, turning, crouching, and reaching, providing a basis for early-stage language–motion alignment.
+
+The next major step is to leverage the BeyondMimic training pipeline for fine-tuning with language-conditioned diffusion models. 
+This involves modifying the diffusion policy to accept text embeddings as conditioning variables and integrating semantic labels from Motion-X++ into the motion tracking process.
+
+Two main issues have emerged. 
+First, the semantic annotations in Motion-X++ are relatively sparse and inconsistent, which limits the quality of language–motion alignment during supervised pretraining. 
+Second, determining a suitable architecture for the joint training of unlabeled and semantically labeled data remains an open design question. 
+We are currently exploring multi-branch diffusion backbones that can handle both labeled and unlabeled trajectories to support scalable pretraining.
+
+Overall, these efforts establish a solid foundation for end-to-end language-guided humanoid control. 
+With the BeyondMimic infrastructure functioning and dataset preprocessing underway, the project is on track to demonstrate feasibility and progress toward a conditional trajectory diffusion controller in the final report.
+
+\subsection{Scope Update and Justification}
+Compared to the initial proposal, we refined the project scope to focus on simulated humanoid control and language-conditioned trajectory generation, excluding real-world deployment and visual grounding at this stage. 
+Preliminary trials with BeyondMimic indicated that reliable training and evaluation can already be achieved entirely in simulation, enabling faster iteration and controlled ablations. 
+We also deferred multi-skill fusion to later stages after observing instability in long-horizon imitation rollouts. 
+This pivot ensures technical feasibility while still aligning with the overarching goal of scalable language-conditioned humanoid control.
+
+\subsection{Preliminary Results and Analysis}
+
+\begin{figure}[h]
+    \centering
+    \begin{tabular}{cccc}
+        \includegraphics[height=2.2in]{figure/g1_deploy_1.png} &
+        \includegraphics[height=2.2in]{figure/g1_deploy_2.png} &
+        \includegraphics[height=2.2in]{figure/g1_deploy_4.png} \\
+    \end{tabular}
+    \caption{Sequential frames from a G1 humanoid deployment trained on motion trajectories from Motion-X++. These motions were not originally included in BeyondMimic}
+    \label{fig:g1_deploy_sequence}
+\end{figure}
+
+Initial experiments using BeyondMimic-trained controllers demonstrate successful motion tracking for short-horizon actions such as stepping and reaching. 
+The pretrained diffusion model generates physically valid trajectories with minor oscillations at transition frames. 
+We evaluated preliminary language–motion alignment using simple text prompts and manually labeled action types from Motion-X++, achieving roughly 70\% prompt compliance across 50 sampled trajectories.
+
+Notable failure cases include unstable balance during continuous locomotion and inconsistent text-conditioned generation when semantic labels are ambiguous. 
+These insights suggest that data quality and consistent label semantics are critical bottlenecks, motivating upcoming work on improved data curation and cross-modal regularization.
+
+\subsection{Roadmap to Final Report}
+\textbf{Planned Milestones:}
+\begin{itemize}
+    \item \textbf{Week 10–11:} Integrate text-conditioned diffusion into the BeyondMimic pipeline; evaluate on motion categories (reaching, turning, stepping).
+    \item \textbf{Week 12:} Implement ablation studies on diffusion steps, conditioning strength, and motion/text dataset subsets.
+    \item \textbf{Week 13:} Extend to multi-skill sequences and evaluate trajectory smoothness and semantic consistency.
+    \item \textbf{Week 14:} Conduct final analysis and prepare report, open-source code, and dataset.
+\end{itemize}
+
+\textbf{Risks and Mitigations:}
+\begin{itemize}
+    \item \textit{Dataset label noise:} mitigate via prompt normalization and clustering-based relabeling.
+    \item \textit{Training instability:} use smaller batch diffusion steps and checkpoint averaging.
+    \item \textit{Compute cost:} run shorter diffusion rollouts for ablations, scaling up later.
+\end{itemize}
+
+%% References
+\printbibliography
+% \bibliographystyle{plain}
+% \bibliography{refs}
+
+\end{document}

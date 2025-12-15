@@ -1,0 +1,606 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{liao2025beyondmimicmotiontrackingversatile}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=d73fe97fe88f0245ef4c77e657726624}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Qiayuan},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=448d7f9b658e33338af86babc95e906d}{%
+           family={Truong},
+           familyi={T\bibinitperiod},
+           given={Takara\bibnamedelima E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=1ba20ecf4591986da838268f14876a96}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Xiaoyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=59e9283208cfbcbfd943ddd1e8f13774}{%
+           family={Tevet},
+           familyi={T\bibinitperiod},
+           given={Guy},
+           giveni={G\bibinitperiod}}}%
+        {{hash=ae04632bf598bc33ad7db75e6aad2a41}{%
+           family={Sreenath},
+           familyi={S\bibinitperiod},
+           given={Koushil},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f5c7bbcb64010ff9557a4a84200a4f49}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={C.\bibnamedelimi Karen},
+           giveni={C\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{cf4aed2f1705b11ebc31688afa2455d9}
+      \strng{fullhash}{17c784b7caacd1b6441e46f71a9b763c}
+      \strng{fullhashraw}{17c784b7caacd1b6441e46f71a9b763c}
+      \strng{bibnamehash}{cf4aed2f1705b11ebc31688afa2455d9}
+      \strng{authorbibnamehash}{cf4aed2f1705b11ebc31688afa2455d9}
+      \strng{authornamehash}{cf4aed2f1705b11ebc31688afa2455d9}
+      \strng{authorfullhash}{17c784b7caacd1b6441e46f71a9b763c}
+      \strng{authorfullhashraw}{17c784b7caacd1b6441e46f71a9b763c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.RO}
+      \field{eprinttype}{arXiv}
+      \field{title}{BeyondMimic: From Motion Tracking to Versatile Humanoid Control via Guided Diffusion}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2508.08241
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2508.08241
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2508.08241
+      \endverb
+    \endentry
+    \entry{ji2024exbody2}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=4e594785922ce88096ea498072a2ce61}{%
+           family={Ji},
+           familyi={J\bibinitperiod},
+           given={Mazeyu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c9a02e4044558406a75e47be8c315bac}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Xuanbin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=ad0d24bb008c9b37c59a3279f34cd576}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Fangchen},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c996f5df1fd6f3404b527f1a6cb26faf}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jialong},
+           giveni={J\bibinitperiod}}}%
+        {{hash=aea28139ba5a2d0b205da890b63300d4}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Ge},
+           giveni={G\bibinitperiod}}}%
+        {{hash=51d667d160c48c98a6d806299a88dd98}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Xuxin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=84a57ab121539e94069a33b4d40492c1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xiaolong},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{af3bde39cb391e4755d31b9633ddaf01}
+      \strng{fullhash}{cfd74c9e1548ad70ca15bd70b61bea73}
+      \strng{fullhashraw}{cfd74c9e1548ad70ca15bd70b61bea73}
+      \strng{bibnamehash}{af3bde39cb391e4755d31b9633ddaf01}
+      \strng{authorbibnamehash}{af3bde39cb391e4755d31b9633ddaf01}
+      \strng{authornamehash}{af3bde39cb391e4755d31b9633ddaf01}
+      \strng{authorfullhash}{cfd74c9e1548ad70ca15bd70b61bea73}
+      \strng{authorfullhashraw}{cfd74c9e1548ad70ca15bd70b61bea73}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2412.13196}
+      \field{title}{ExBody2: Advanced Expressive Humanoid Whole-Body Control}
+      \field{year}{2024}
+    \endentry
+    \entry{cheng2024express}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=51d667d160c48c98a6d806299a88dd98}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Xuxin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=b856b5447f9fa3c5aa0f4be69818c0ce}{%
+           family={Ji},
+           familyi={J\bibinitperiod},
+           given={Yandong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=f4d8ebed5893e247318ba42f605ede7c}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Junming},
+           giveni={J\bibinitperiod}}}%
+        {{hash=530994f35dcd3db12eeca41b0a54f76e}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Ruihan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=aea28139ba5a2d0b205da890b63300d4}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Ge},
+           giveni={G\bibinitperiod}}}%
+        {{hash=84a57ab121539e94069a33b4d40492c1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xiaolong},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{fda9a7dad09ed39426db8dcae52752fb}
+      \strng{fullhash}{72c7deb44bb45a2b7a77e123edb4136b}
+      \strng{fullhashraw}{72c7deb44bb45a2b7a77e123edb4136b}
+      \strng{bibnamehash}{fda9a7dad09ed39426db8dcae52752fb}
+      \strng{authorbibnamehash}{fda9a7dad09ed39426db8dcae52752fb}
+      \strng{authornamehash}{fda9a7dad09ed39426db8dcae52752fb}
+      \strng{authorfullhash}{72c7deb44bb45a2b7a77e123edb4136b}
+      \strng{authorfullhashraw}{72c7deb44bb45a2b7a77e123edb4136b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2402.16796}
+      \field{title}{Expressive Whole-Body Control for Humanoid Robots}
+      \field{year}{2024}
+    \endentry
+    \entry{zhang2025falcon}{article}{}{}
+      \name{author}{9}{}{%
+        {{hash=caf2e71fcd820528f71c71e052428737}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yuanhang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5bf6bd6334fc0228c5a4352c87dd0627}{%
+           family={Yuan},
+           familyi={Y\bibinitperiod},
+           given={Yifu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0b471bf2cced8e57a386dfa8b4ea7218}{%
+           family={Gurunath},
+           familyi={G\bibinitperiod},
+           given={Prajwal},
+           giveni={P\bibinitperiod}}}%
+        {{hash=90fdbcf96b9f6eb06400a7a809c19434}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Tairan},
+           giveni={T\bibinitperiod}}}%
+        {{hash=faee89b48145decbfc43c93436394507}{%
+           family={Omidshafiei},
+           familyi={O\bibinitperiod},
+           given={Shayegan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6ed5efddc9f3e49781cb4c64ae6135f7}{%
+           family={Agha-mohammadi},
+           familyi={A\bibinithyphendelim m\bibinitperiod},
+           given={Ali-akbar},
+           giveni={A\bibinithyphendelim a\bibinitperiod}}}%
+        {{hash=4bc10eedd84efb83a425b27831734f5d}{%
+           family={Vazquez-Chanlatte},
+           familyi={V\bibinithyphendelim C\bibinitperiod},
+           given={Marcell},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a3a70b3af488369e07c26478e99a43bc}{%
+           family={Pedersen},
+           familyi={P\bibinitperiod},
+           given={Liam},
+           giveni={L\bibinitperiod}}}%
+        {{hash=a65e0dcf7d61134ee634d3a12fbc6fc9}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Guanya},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{c7ad3e345d5e1ec30fafe29317ea096c}
+      \strng{fullhash}{1874e78237a15ba8668be5bbbc47ed79}
+      \strng{fullhashraw}{1874e78237a15ba8668be5bbbc47ed79}
+      \strng{bibnamehash}{c7ad3e345d5e1ec30fafe29317ea096c}
+      \strng{authorbibnamehash}{c7ad3e345d5e1ec30fafe29317ea096c}
+      \strng{authornamehash}{c7ad3e345d5e1ec30fafe29317ea096c}
+      \strng{authorfullhash}{1874e78237a15ba8668be5bbbc47ed79}
+      \strng{authorfullhashraw}{1874e78237a15ba8668be5bbbc47ed79}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2505.06776}
+      \field{title}{FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation}
+      \field{year}{2025}
+    \endentry
+    \entry{li2025amo}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=c996f5df1fd6f3404b527f1a6cb26faf}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jialong},
+           giveni={J\bibinitperiod}}}%
+        {{hash=51d667d160c48c98a6d806299a88dd98}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Xuxin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=e47c76d6def155c84b6868afc70083c4}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Tianshu},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e3b1184276f2ab6cc2d132f92556be1a}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Shiqi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=20e4e234d3f26579a82f60b23a02f7ab}{%
+           family={Qiu},
+           familyi={Q\bibinitperiod},
+           given={Rizhao},
+           giveni={R\bibinitperiod}}}%
+        {{hash=84a57ab121539e94069a33b4d40492c1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xiaolong},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{aa94a65469efaf0af0c1d517867a6fe8}
+      \strng{fullhash}{8188d69a8eb8be25635e25e533cca20d}
+      \strng{fullhashraw}{8188d69a8eb8be25635e25e533cca20d}
+      \strng{bibnamehash}{aa94a65469efaf0af0c1d517867a6fe8}
+      \strng{authorbibnamehash}{aa94a65469efaf0af0c1d517867a6fe8}
+      \strng{authornamehash}{aa94a65469efaf0af0c1d517867a6fe8}
+      \strng{authorfullhash}{8188d69a8eb8be25635e25e533cca20d}
+      \strng{authorfullhashraw}{8188d69a8eb8be25635e25e533cca20d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Robotics: Science and Systems 2025}
+      \field{title}{AMO: Adaptive Motion Optimization for Hyper-Dexterous Humanoid Whole-Body Control}
+      \field{year}{2025}
+    \endentry
+    \entry{DBLP:journals/corr/abs-2109-01115}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=df590fc759747c7e8bfe23768561e640}{%
+           family={Nair},
+           familyi={N\bibinitperiod},
+           given={Suraj},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b9441ad4287a1b5f251258a6fd6afb3a}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=983d591f2f65ee1e0373cdf4378da02d}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=a096e9107f0463212211c4510c6fa470}{%
+           family={Ichter},
+           familyi={I\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e29c20003a517abaaac28852301c03c2}{%
+           family={Savarese},
+           familyi={S\bibinitperiod},
+           given={Silvio},
+           giveni={S\bibinitperiod}}}%
+        {{hash=058e82495825ae376c6a96a12169e6ee}{%
+           family={Finn},
+           familyi={F\bibinitperiod},
+           given={Chelsea},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{9fbd8802d6fb7d7d127cabbac30f865d}
+      \strng{fullhash}{dfbe4539b14e4c93950ff6a5cee0e4e1}
+      \strng{fullhashraw}{dfbe4539b14e4c93950ff6a5cee0e4e1}
+      \strng{bibnamehash}{9fbd8802d6fb7d7d127cabbac30f865d}
+      \strng{authorbibnamehash}{9fbd8802d6fb7d7d127cabbac30f865d}
+      \strng{authornamehash}{9fbd8802d6fb7d7d127cabbac30f865d}
+      \strng{authorfullhash}{dfbe4539b14e4c93950ff6a5cee0e4e1}
+      \strng{authorfullhashraw}{dfbe4539b14e4c93950ff6a5cee0e4e1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Learning Language-Conditioned Robot Behavior from Offline Data and Crowd-Sourced Annotation}
+      \field{volume}{abs/2109.01115}
+      \field{year}{2021}
+      \verb{eprint}
+      \verb 2109.01115
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2109.01115
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2109.01115
+      \endverb
+    \endentry
+    \entry{shao2025langwbclanguagedirectedhumanoidwholebody}{article}{}{}
+      \name{author}{9}{}{%
+        {{hash=534bc55a7bd1748d85fe32bc3d916f2a}{%
+           family={Shao},
+           familyi={S\bibinitperiod},
+           given={Yiyang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1ba20ecf4591986da838268f14876a96}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Xiaoyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=10f232028bc4c4cbb3979d871fe86047}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Bike},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d73fe97fe88f0245ef4c77e657726624}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Qiayuan},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=7fd46d3188cab7cf40470a93817afde9}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Yuman},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=b61924e8092082ffeddbe159bdba6cf7}{%
+           family={Chi},
+           familyi={C\bibinitperiod},
+           given={Yufeng},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=dd4321d687428681a60046f671f9e1cc}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhongyu},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=d70d267494ae35a8931a4eb969f9f141}{%
+           family={Shao},
+           familyi={S\bibinitperiod},
+           given={Sophia},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ae04632bf598bc33ad7db75e6aad2a41}{%
+           family={Sreenath},
+           familyi={S\bibinitperiod},
+           given={Koushil},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a09e76d97b972b6c2a3058f69c019b6}
+      \strng{fullhash}{6ce73a6e8efe60d7ae81a085222ea598}
+      \strng{fullhashraw}{6ce73a6e8efe60d7ae81a085222ea598}
+      \strng{bibnamehash}{3a09e76d97b972b6c2a3058f69c019b6}
+      \strng{authorbibnamehash}{3a09e76d97b972b6c2a3058f69c019b6}
+      \strng{authornamehash}{3a09e76d97b972b6c2a3058f69c019b6}
+      \strng{authorfullhash}{6ce73a6e8efe60d7ae81a085222ea598}
+      \strng{authorfullhashraw}{6ce73a6e8efe60d7ae81a085222ea598}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.RO}
+      \field{eprinttype}{arXiv}
+      \field{title}{LangWBC: Language-directed Humanoid Whole-Body Control via End-to-end Learning}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2504.21738
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2504.21738
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2504.21738
+      \endverb
+    \endentry
+    \entry{AMASS:ICCV:2019}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=2f5f7c5049dc118abe7fc03f70e822d0}{%
+           family={Mahmood},
+           familyi={M\bibinitperiod},
+           given={Naureen},
+           giveni={N\bibinitperiod}}}%
+        {{hash=ebf742da48550de93872d810cd833b47}{%
+           family={Ghorbani},
+           familyi={G\bibinitperiod},
+           given={Nima},
+           giveni={N\bibinitperiod}}}%
+        {{hash=4da3e853a67bf8dbfe35a4e9bb3561fe}{%
+           family={Troje},
+           familyi={T\bibinitperiod},
+           given={Nikolaus\bibnamedelima F.},
+           giveni={N\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=ad16f6eab34f1f33393889dcaac427d6}{%
+           family={Pons-Moll},
+           familyi={P\bibinithyphendelim M\bibinitperiod},
+           given={Gerard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=54960bfd1d66de256b111681241131bb}{%
+           family={Black},
+           familyi={B\bibinitperiod},
+           given={Michael\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{324e9e597ff3f27e92e315b5e90def3b}
+      \strng{fullhash}{41078965930fbb31d10cfcd75a17e2d9}
+      \strng{fullhashraw}{41078965930fbb31d10cfcd75a17e2d9}
+      \strng{bibnamehash}{324e9e597ff3f27e92e315b5e90def3b}
+      \strng{authorbibnamehash}{324e9e597ff3f27e92e315b5e90def3b}
+      \strng{authornamehash}{324e9e597ff3f27e92e315b5e90def3b}
+      \strng{authorfullhash}{41078965930fbb31d10cfcd75a17e2d9}
+      \strng{authorfullhashraw}{41078965930fbb31d10cfcd75a17e2d9}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Computer Vision}
+      \field{month}{10}
+      \field{title}{{AMASS}: Archive of Motion Capture as Surface Shapes}
+      \field{year}{2019}
+      \field{pages}{5442\bibrangedash 5451}
+      \range{pages}{10}
+    \endentry
+    \entry{harvey2020robust}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=c777eb653b4bbdb82ab4acd812f3000c}{%
+           family={Harvey},
+           familyi={H\bibinitperiod},
+           given={Félix\bibnamedelima G.},
+           giveni={F\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=4aeb58df7bc4e734e77a4b2b591be529}{%
+           family={Yurick},
+           familyi={Y\bibinitperiod},
+           given={Mike},
+           giveni={M\bibinitperiod}}}%
+        {{hash=193b9ca6685cb6578499da34933e41bf}{%
+           family={Nowrouzezahrai},
+           familyi={N\bibinitperiod},
+           given={Derek},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ac7fb32a9c89f3239e579fa3ff2e1765}{%
+           family={Pal},
+           familyi={P\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{d84909c64c66e83d0fbb56cb56d4189b}
+      \strng{fullhash}{a40452897ca4210b6dfd41831dae6b91}
+      \strng{fullhashraw}{a40452897ca4210b6dfd41831dae6b91}
+      \strng{bibnamehash}{d84909c64c66e83d0fbb56cb56d4189b}
+      \strng{authorbibnamehash}{d84909c64c66e83d0fbb56cb56d4189b}
+      \strng{authornamehash}{d84909c64c66e83d0fbb56cb56d4189b}
+      \strng{authorfullhash}{a40452897ca4210b6dfd41831dae6b91}
+      \strng{authorfullhashraw}{a40452897ca4210b6dfd41831dae6b91}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{ACM Transactions on Graphics (Proceedings of ACM SIGGRAPH)}
+      \field{number}{4}
+      \field{title}{Robust Motion In-Betweening}
+      \field{volume}{39}
+      \field{year}{2020}
+    \endentry
+    \entry{zhang2025motionxlargescalemultimodal3d}{article}{}{}
+      \name{author}{10}{}{%
+        {{hash=0ba6b35593bc782353e031ea1be72f9d}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yuhong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0b8be9667199be795ead5d6b0aa56b61}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4cd02231d5accc3c282905f2cc208b6d}{%
+           family={Zeng},
+           familyi={Z\bibinitperiod},
+           given={Ailing},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2b0097cbc85869bb4a16d5966ab6dd67}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Guanlin},
+           giveni={G\bibinitperiod}}}%
+        {{hash=3ace27178e2ec3fdbbf94f7edd4fe90d}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Shunlin},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d51b477fcce156e6b65c9c21d5fad9a3}{%
+           family={Fu},
+           familyi={F\bibinitperiod},
+           given={Yurong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=c855958881e6fa2dd8261a199d4c5fa2}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Yuanhao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6c19fa5911ba0867d25bdeba5fe2bfac}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Ruimao},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e3b26def789adf702927206c5d3c57f3}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Haoqian},
+           giveni={H\bibinitperiod}}}%
+        {{hash=f4a4cbf770add19c206827116c68732e}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{080cc400a10a49b1dfd67340da7aee17}
+      \strng{fullhash}{46e29e731fd4627dc0af11673fe6055a}
+      \strng{fullhashraw}{46e29e731fd4627dc0af11673fe6055a}
+      \strng{bibnamehash}{080cc400a10a49b1dfd67340da7aee17}
+      \strng{authorbibnamehash}{080cc400a10a49b1dfd67340da7aee17}
+      \strng{authornamehash}{080cc400a10a49b1dfd67340da7aee17}
+      \strng{authorfullhash}{46e29e731fd4627dc0af11673fe6055a}
+      \strng{authorfullhashraw}{46e29e731fd4627dc0af11673fe6055a}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CV}
+      \field{eprinttype}{arXiv}
+      \field{title}{Motion-X++: A Large-Scale Multimodal 3D Whole-body Human Motion Dataset}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2501.05098
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2501.05098
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2501.05098
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
